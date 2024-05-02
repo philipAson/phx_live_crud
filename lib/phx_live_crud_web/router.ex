@@ -1,5 +1,6 @@
 defmodule PhxLiveCrudWeb.Router do
   use PhxLiveCrudWeb, :router
+  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -17,7 +18,7 @@ defmodule PhxLiveCrudWeb.Router do
   scope "/", PhxLiveCrudWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", HomeLive
   end
 
   # Other scopes may use custom stacks.
