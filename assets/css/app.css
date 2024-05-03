@@ -3,3 +3,19 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+.home-container{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.filter_users{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
