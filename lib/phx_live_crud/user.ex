@@ -131,7 +131,7 @@ defmodule PhxLiveCrud.User do
 
   defp apply_name_filter(query, _), do: query
 
-  defp apply_sort(query, sorter) do
+  defp apply_sort(query, %{sorter: sorter}) do
     case sorter do
       "age" -> sort_users_by_age(query)
       "name" -> sort_users_by_name(query)
@@ -139,6 +139,8 @@ defmodule PhxLiveCrud.User do
       _ -> query
     end
   end
+
+  defp apply_sort(query, _), do: query
 
   # defp apply_sort(query, _), do: query
 
@@ -172,7 +174,7 @@ defmodule PhxLiveCrud.User do
     users = PhxLiveCrud.Repo.all(enumarable)
 
     Enum.map(users, fn user ->
-      Map.put(user, :age, Date.diff(Date.utc_today(), user.date_of_birth) / 365)
+      Map.put(user, :age, trunc(Date.diff(Date.utc_today(), user.date_of_birth) / 365))
     end)
   end
 end
